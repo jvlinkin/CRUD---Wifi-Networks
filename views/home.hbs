@@ -38,12 +38,36 @@
                  
             </div>
             <div class="col-4">
-                <a href="#" class="w-100 btn btn-danger">Deletar</a>    
+                <button class="w-100 btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{id}}" >Deletar</button>    
             </div>                  
         </div>
         
         </td>
     </tr>
+
+    <!-- Modal -->
+<div class="modal fade" id="deleteModal_{{id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fw-bold text-danger">
+        Tem certeza que deseja excluir a rede {{nome}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+        <form action="/deletar" method="post">
+          <input type="hidden" name="id" value="{{id}}">
+          <button type="submit" class="btn btn-danger">Sim, quero deletar!</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
     {{/each}}
   </tbody>
 

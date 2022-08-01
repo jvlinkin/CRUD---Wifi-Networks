@@ -59,6 +59,10 @@ app.use('/cadastrorede', cadastrorede)
 const editar = require('./routes/editar')
 app.use('/editar', editar)
 
+//IMPORT ROTA DELETAR
+const deletar = require('./routes/deletar')
+app.use('/deletar', deletar)
+
 
 
 app.listen(PORT, () =>{
