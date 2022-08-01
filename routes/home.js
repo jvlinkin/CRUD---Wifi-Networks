@@ -7,7 +7,7 @@ const Usuario = require('../models/Usuario')
 const CadastroRede = require('../models/CadastroRede')
 
 
-router.get('/', checkToken, async (req,res) =>{
+router.get('/', async (req,res) =>{
 
         await CadastroRede.findAll().then((valores)=>{
             if(valores.length > 0){
@@ -24,26 +24,7 @@ router.get('/', checkToken, async (req,res) =>{
 })
 
 
-function checkToken(req,res,next){
-    const authHeader = req.headers['authorization']
-    var token = authHeader && authHeader.split(' ')[1]
 
-    if(!token){
-        return res.status(401).json({msg: "Token inexistente."})
-    }
-
-    try {
-        const secret = process.env.SECRET_APPLICATION
-        jwt.verify(token, secret)
-        console.log('Autenticação realizada com sucesso!')
-        next()
-        
-    } catch (error) {
-        console.log(error)
-        res.status(400).json({msg: 'Token inválido'})
-        
-    }
-}
 
 
 module.exports = router

@@ -98,9 +98,7 @@ router.post("/", async (req,res) =>{
         return res.redirect('/')
         }).catch((err) =>{
             console.log(`Ocorreu um erro ao inserir o usuário no BD. Erro:` + err);
-        })
-        
-        
+        })        
         
     }
 

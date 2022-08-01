@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const CadastroRede = require('../models/CadastroRede')
 
 //DELETAR
-router.post('/', checkToken, (req,res)=>{
+router.post('/',  (req,res)=>{
     const id = req.body.id
 
     CadastroRede.destroy({
@@ -21,27 +21,5 @@ router.post('/', checkToken, (req,res)=>{
     
 })
 
-function checkToken(req,res,next){
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-
-    console.log(token)
-
-    if(!token){
-        return res.status(401).json({msg: "Token inexistente."})
-    }
-
-    try {
-        const secret = process.env.SECRET_APPLICATION
-        jwt.verify(token, secret)
-        console.log('Autenticação realizada com sucesso!')
-        next()
-        
-    } catch (error) {
-        console.log(error)
-        res.status(400).json({msg: 'Token inválido'})
-        
-    }
-}
 
 module.exports = router
