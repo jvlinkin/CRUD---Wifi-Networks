@@ -1,0 +1,70 @@
+
+<br>
+<br>
+<div class="container">
+  {{>_msg}}
+<h3>Redes Wi-fi cadastradas:</h3>
+{{#if table}}
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Senha</th>
+      <th scope="col">Rua</th>
+      <th scope="col">Nº</th>
+      <th scope="col">Estado</th>
+      <th scope="col">País</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each redes}}
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{nome}}</td>
+      <td>{{senha}}</td>
+      <td>{{endereco}}</td>
+      <td>{{numero}}</td>
+      <td>{{estado}}</td>
+      <td>{{pais}}</td>
+      <td>
+        <div class="row">            
+            <div class="col-4">
+              <form action="/editar" method="POST">
+              <input type="hidden" name="id" value="{{id}}">
+              <button class="w-100 btn btn-info">Editar</button>
+              </form>
+                 
+            </div>
+            <div class="col-4">
+                <a href="#" class="w-100 btn btn-danger">Deletar</a>    
+            </div>                  
+        </div>
+        
+        </td>
+    </tr>
+    {{/each}}
+  </tbody>
+
+  
+</table>
+
+{{else}}
+<div class="card mt-4">
+  <div class="card-body">
+    Nenhuma rede cadastrada!
+  </div>
+</div>
+<br>
+{{/if}}
+
+
+
+<a href="/cadastrorede"><button type="button" class="btn btn-dark btn-lg">Inserir nova rede</button></a>
+
+
+
+
+
+</div>

@@ -1,0 +1,32 @@
+{{#if msg_success}}
+<div class="alert alert-success" role="alert">
+  Cadastrado com sucesso!
+</div>
+{{/if}}
+
+{{#each msg_error}}
+<div class="alert alert-danger" role="alert">
+  {{mensagem}}
+</div>
+{{/each}}
+
+{{#if msg_success_cadastrorede}}
+<div class="alert alert-success" role="alert">
+  Rede cadastrada com sucesso!
+</div>
+{{/if}}
+
+{{#each msg_error_cadastrorede}}
+<div class="alert alert-danger" role="alert">
+  {{mensagem}}
+</div>
+{{/each}}
+
+{{#if msg_success_atualizarede}}
+<div class="alert alert-success" role="alert">
+  Rede atualizada com sucesso!
+</div>
+{{/if}}
+
+
+

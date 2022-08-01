@@ -1,0 +1,72 @@
+{{#unless error}}
+<section class="vh-100" style="background-color: #6466e6;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+
+            <form action="/editar/atualizar" method="POST">
+            <h3 class="mb-5">Edite os dados da rede</h3>
+            {{>_buttons}}
+            {{>_msg}}
+
+            
+            <div class="form-outline mb-4">
+              <input type="hidden" value="{{id}}" name="id"/>
+              <input value="{{nome}}" type="text" name="nome" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">Nome da rede</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input value="{{senha}}" type="text" name="senha" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">Senha</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input value="{{endereco}}" type="text" name="endereco" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">Endereço</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input value="{{numero}}" type="number" name="numero" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">Número</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input value="{{estado}}" type="text" name="estado" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">Estado</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input value="{{pais}}" type="text" name="pais" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">País</label>
+            </div>
+
+            
+
+
+            <button class="btn btn-primary btn-lg btn-block btn btn-warning" type="submit">Salvar alterações</button>
+            
+            
+            </form> 
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{else}}
+<div class="card-body p-5 text-center">
+<div class="card bg-danger text-white">
+  <div class="card-body">
+    Houve um problema: {{problema}}
+  </div>
+</div>
+</div>
+
+
+{{/unless}}
