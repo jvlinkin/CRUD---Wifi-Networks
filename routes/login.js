@@ -1,9 +1,19 @@
+const dotenv = require('dotenv')
+require('dotenv').config()
 const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
+//SECRET
+var secret = process.env.SECRET_APPLICATION
+
+
 
 //IMPORTAR MODELS
 const Usuario = require('../models/Usuario')
+
+
 
 
 router.get('/', (req,res) =>{
@@ -63,21 +73,24 @@ router.post('/', async (req,res) =>{
         if(!matchSenha){
             erros.push({mensagem: 'Senha incorreta'})
             return res.redirect('/')
-        }else{
-            //GERAR TOKEN E TROCAR E ACESSAR ROTA PROTEGIDA.
-            return res.redirect('home')
         }
-            
-        
 
-
-        
-        
-
-
-    
-    
+        try {
+            //const secret = process.env.SECRET
+            var token = jwt.sign({id: Usuario.id}, secret)
+            console.log({
+                message: 'Autenticação realizada com sucesso',
+                token: token
+            })
+            return res.redirect('home')
+                
+        } catch (error) {
+                console.log(error)
+                res.status(200).json({msg: 'A autenticação falhou:'+ error})                
+        }
+ 
     
 })
+
 
 module.exports = router

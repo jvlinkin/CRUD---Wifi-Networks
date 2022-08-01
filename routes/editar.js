@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const jwt = require('jsonwebtoken')
 
 //import model das redes
 const CadastroRedes = require('../models/CadastroRede')
 
 
-router.post('/', (req,res) =>{
+router.post('/', checkToken, (req,res) =>{
     const id = req.body.id
     CadastroRedes.findByPk(id).then((dados)=>{
         return res.render('editar', {error: false, 
@@ -24,7 +25,7 @@ router.post('/', (req,res) =>{
 })
 
 
-router.post('/atualizar', (req,res)=>{
+router.post('/atualizar', checkToken, (req,res)=>{
 
 
     const {nome, senha, endereco, numero, estado, pais, id} = req.body
@@ -82,6 +83,29 @@ router.post('/atualizar', (req,res)=>{
     }
 
 })
+
+function checkToken(req,res,next){
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    console.log(token)
+
+    if(!token){
+        return res.status(401).json({msg: "Token inexistente."})
+    }
+
+    try {
+        const secret = process.env.SECRET_APPLICATION
+        jwt.verify(token, secret)
+        console.log('Autenticação realizada com sucesso!')
+        next()
+        
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({msg: 'Token inválido'})
+        
+    }
+}
 
 
 

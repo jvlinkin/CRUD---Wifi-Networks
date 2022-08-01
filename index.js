@@ -5,10 +5,12 @@ const PORT = process.env.PORT || 3000
 const hbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const jwt = require('jsonwebtoken')
 
 
 //VARIÁVEIS DE AMBIENTE
 const secretSession = process.env.SECRET_SESSION;
+const secretApplication = process.env.SECRET_APPLICATION;
 
 
 //CONFIG HANDLEBARS
