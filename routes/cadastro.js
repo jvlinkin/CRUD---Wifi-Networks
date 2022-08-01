@@ -87,7 +87,7 @@ router.post("/", async (req,res) =>{
         const salt = await bcrypt.genSalt(12);
         const hashSenha = await bcrypt.hash(senha, salt)
 
-        //inserindo no banco.
+        //INSERINDO NO BANCO DE DADOS
         await Usuario.create({
             nome: nome,
             email: email.toLowerCase(),
@@ -99,7 +99,7 @@ router.post("/", async (req,res) =>{
         }).catch((err) =>{
             console.log(`Ocorreu um erro ao inserir o usuário no BD. Erro:` + err);
         })
-        //salvar no banco de dados.
+        
         
         
     }

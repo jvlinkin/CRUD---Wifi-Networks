@@ -1,11 +1,10 @@
 {
   "name": "crud-nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto CRUD com autenticação",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "João Vitor",
